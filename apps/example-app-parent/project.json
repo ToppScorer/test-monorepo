@@ -1,0 +1,48 @@
+{
+  "name": "example-app-parent",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "example-app-parent/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nxrocks/nx-spring-boot:build",
+      "options": {
+        "root": "./example-app-parent"
+      },
+      "dependsOn": [
+        "^install"
+      ],
+      "outputs": [
+        "{workspaceRoot}/example-app-parent/target"
+      ]
+    },
+    "install": {
+      "executor": "@nxrocks/nx-spring-boot:install",
+      "options": {
+        "root": "./apps/example-app-parent"
+      },
+      "dependsOn": [
+        "^install"
+      ],
+      "outputs": [
+        "{workspaceRoot}/apps/example-app-parent/target"
+      ]
+    },
+    "test": {
+      "executor": "@nxrocks/nx-spring-boot:test",
+      "options": {
+        "root": "./example-app-parent"
+      },
+      "outputs": [
+        "{workspaceRoot}/example-app-parent/target"
+      ]
+    },
+    "clean": {
+      "executor": "@nxrocks/nx-spring-boot:clean",
+      "options": {
+        "root": "./example-app-parent"
+      }
+    }
+  },
+  "tags": []
+}
