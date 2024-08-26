@@ -1,48 +1,16 @@
 {
   "name": "example-lib-parent",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "example-lib-parent/src",
+  "$schema": "../../.nx/installation/node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/example-lib-parent/src",
   "projectType": "library",
   "targets": {
-    "build": {
-      "executor": "@nxrocks/nx-spring-boot:build",
-      "options": {
-        "root": "./example-lib-parent"
-      },
-      "dependsOn": [
-        "^install"
-      ],
-      "outputs": [
-        "{workspaceRoot}/example-lib-parent/target"
-      ]
-    },
-    "install": {
-      "executor": "@nxrocks/nx-spring-boot:install",
-      "options": {
-        "root": "./libs/example-lib-parent"
-      },
-      "dependsOn": [
-        "^install"
-      ],
-      "outputs": [
-        "{workspaceRoot}/libs/example-lib-parent/target"
-      ]
-    },
-    "test": {
-      "executor": "@nxrocks/nx-spring-boot:test",
-      "options": {
-        "root": "./example-lib-parent"
-      },
-      "outputs": [
-        "{workspaceRoot}/example-lib-parent/target"
-      ]
-    },
-    "clean": {
-      "executor": "@nxrocks/nx-spring-boot:clean",
-      "options": {
-        "root": "./example-lib-parent"
-      }
-    }
+    "backend-check-format": {},
+    "backend-apply-format": {},
+    "backend-clean": {},
+    "backend-build": {},
+    "backend-test": {},
+    "backend-install": {},
+    "backend-deploy": {}
   },
   "tags": []
 }

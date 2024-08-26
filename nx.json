@@ -1,15 +1,115 @@
 {
+  "$schema": "./.nx/installation/node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": []
+  },
   "targetDefaults": {
-    "build": {
-      "cache": true,
-      "dependsOn": [
-        "^build"
-      ]
+    "backend-check-format": {
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "spotless:check"
+      }
     },
-    "lint": {
+    "backend-apply-format": {
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "spotless:apply"
+      }
+    },
+    "backend-clean": {
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "clean"
+      }
+    },
+    "backend-build": {
+      "cache": true,
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "package"
+      },
+      "dependsOn": ["^backend-install"],
+      "outputs": ["{projectRoot}/target"]
+    },
+    "backend-test-compile": {
+      "cache": true,
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "test-compile"
+      },
+      "dependsOn": ["^backend-install"],
+      "outputs": ["{projectRoot}/target"]
+    },
+    "backend-test": {
+      "cache": true,
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "test"
+      },
+      "dependsOn": ["^backend-install"],
+      "outputs": ["{projectRoot}/target"]
+    },
+    "backend-verify": {
+      "cache": true,
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "verify"
+      },
+      "dependsOn": ["^backend-install"],
+      "outputs": ["{projectRoot}/target"]
+    },
+    "backend-sonar": {
       "cache": true
     },
-    "test": {
+    "backend-install": {
+      "cache": true,
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "install"
+      },
+      "dependsOn": ["^backend-install"],
+      "inputs": ["default", "^default"],
+      "outputs": ["{projectRoot}/target"]
+    },
+    "backend-deploy": {
+      "cache": true,
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "deploy"
+      },
+      "dependsOn": ["^backend-install"],
+      "outputs": ["{projectRoot}/target"]
+    },
+    "backend-serve": {
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "spring-boot:run",
+        "keepItRunning": true
+      },
+      "dependsOn": ["^backend-install"]
+    },
+    "backend-build-image": {
+      "cache": true,
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "spring-boot:build-image"
+      },
+      "dependsOn": ["^backend-install"],
+      "outputs": ["{projectRoot}/target"]
+    },
+    "backend-build-info": {
+      "executor": "@jnxplus/nx-maven:run-task",
+      "options": {
+        "task": "spring-boot:build-info"
+      }
+    },
+    "build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default"]
+    },
+    "lint": {
       "cache": true
     },
     "e2e": {
@@ -17,15 +117,25 @@
     },
     "install": {
       "cache": true
-    }
-  },
-  "installation": {
-    "version": "17.1.3",
-    "plugins": {
-      "@nxrocks/nx-spring-boot": "latest"
+    },
+    "test": {
+      "cache": true
     }
   },
   "plugins": [
-    "@nxrocks/nx-spring-boot"
-  ]
+    {
+      "plugin": "@jnxplus/nx-maven",
+      "options": {
+        "graphOptions": {
+        },
+        "mavenRootDirectory": "libs/example-lib-parent"
+      }
+    }
+  ],
+  "installation": {
+    "version": "19.6.2",
+    "plugins": {
+      "@jnxplus/nx-maven": "1.8.0"
+    }
+  }
 }

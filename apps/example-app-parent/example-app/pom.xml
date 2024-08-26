@@ -7,7 +7,6 @@
 		<artifactId>example-app-parent</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<groupId>com.example</groupId>
 	<artifactId>example-app</artifactId>
 	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>

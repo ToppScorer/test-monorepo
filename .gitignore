@@ -1,5 +1,62 @@
+# Special files
+*.bak
+*.log
+*.out
+*.run
 
+# Special folders
+.dynamodb/
+.resourceCache/
+swagger-api/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+classes/
+out/
+
+# VS Code
+.vscode/
+
+# Node
+node/
+node_modules/
+
+# Yarn
+.yarn/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Maven
+.flattened-pom.xml
+target/
+
+# Nx
 .nx/installation
 .nx/cache
-.nx/installation
-.nx/cache
+.nx/workspace-data
+
+# Serverless
+.env
+.env.local
+.nyc_output
+.serverless
+coverage/
+lib/
+
+# Webpack
+.webpack/
+
+# AWS
+.cdk.staging
+awscliv2.zip
+cdk.context.json
+cdk.out/
+/aws/
+
