@@ -7,7 +7,6 @@
 .prettierrc
 
 awscliv2.zip
-nx.json
 README.md
 tsconfig.base.json
 
